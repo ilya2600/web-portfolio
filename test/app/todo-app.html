@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do App</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+            background: beige;
+        }
+        nav {
+            width: 100%;
+            background-color: lightskyblue;
+            padding: 20px;
+            text-align: center;
+            border-bottom: solid #969696;
+        }
+        nav input {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            margin-bottom: 10px;
+            height: 30px;
+        }
+        #add-btn{
+            width: 49.7%;
+            height: 30px;
+        }
+        #clear-btn{
+            width: 49.7%;
+            height: 30px;
+        }
+        .task {
+            width: 100%;
+            background-color: lightskyblue;
+            margin-top: 20px;
+            padding: 20px;
+            border-bottom: solid #969696;
+        }
+        .task-text{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <main>
+       
+        <nav>
+            <input type="text">
+            <button id="add-btn" onclick="Add()">Добавить</button>
+            <button id="clear-btn">Очистить сделанное</button>
+        </nav>
+        
+        <div id="task-list">
+            <div class="task">
+                <input type="checkbox">
+                <div class="task-text"> Текст Задачи </div>
+            </div>
+        </div>
+        
+    </main>
+    
+    <script>
+        /*function testVar(){
+            if (true){
+                var x = 10
+            }
+            console.log("testVar:", x)
+        }
+        
+        function testLet(){
+            if (true){
+                let x = 10
+                console.log("testLet IF:", x)
+            }
+            console.log("testLet:", x)
+        }
+        
+        testVar()
+        testLet()*/
+        
+        let index = localStorage.getItem("index")
+        index = index === null ? 0 : index
+        // (условие) ? значение если true : значение если false
+        
+        function Add(){
+            let inputBox = document.querySelector("nav input")
+            
+            let prefab =
+            `<div class="task">
+                <input type="checkbox">
+                <div class="task-text"> ${inputBox.value} </div>
+            </div>`
+            
+            let taskList = document.querySelector("#task-list")
+            taskList.innerHTML += prefab
+            
+            localStorage.setItem("task" + index, inputBox.value)
+            
+            index++
+            
+            localStorage.setItem("index",index)
+            
+            inputBox.value = ""
+        }
+        
+        function Load(){
+            let i = 0
+            
+            while(i < index){
+                let taskText = localStorage.getItem("task" + i)
+
+                let prefab =
+                `<div class="task">
+                    <input type="checkbox">
+                    <div class="task-text"> ${taskText} </div>
+                </div>`
+
+                let taskList = document.querySelector("#task-list")
+                taskList.innerHTML += prefab
+                
+                i++;
+            }
+            
+        }
+        
+        Load()
+    
+    </script>
+</body>
+</html>
