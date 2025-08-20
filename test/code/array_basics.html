@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Инвентарь</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .item{
+            background: lightblue;
+            font-size: 20px;
+            padding: 10px;
+            border-bottom: solid rgba(0,0,0,0.35)
+        }
+        nav{
+            padding: 20px;
+            background-color: lightblue;
+        }
+        nav input {
+            width: 50%;
+            height: 30px;
+        }
+        nav button {
+            width: 30%;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+   <nav>
+       <input type="text">
+       <button onclick="Add()">Добавить</button>
+       <button onclick="Remove()">Удалить</button>
+   </nav>
+   <div class="items"></div>
+    <script>
+        let items = ["яблока","машина","ананас"]
+        
+        items.push("коробка")
+        
+        function Load(){
+            document.querySelector(".items").innerHTML = ""
+            
+            let i = 0
+            while (i < items.length){
+                console.log(items[i])
+                document.querySelector(".items").innerHTML += `<div class="item">${items[i]}</div>` 
+                i++
+            }
+        }
+        
+        function Add(){
+            let inputBox = document.querySelector("nav input")
+            let item = inputBox.value
+            
+            items.push(item)
+            
+            console.log(items)
+            
+            inputBox.value = ""
+            
+            Load()
+        }
+        
+        function Remove(){
+            items.pop()
+            Load()
+        }
+        
+        items.splice(1,1,"стул","парта")
+        
+        console.log(items.slice(1,3))
+        
+        
+        
+        
+        
+        
+        Load()
+    </script>
+</body>
+</html>
