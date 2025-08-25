@@ -51,7 +51,7 @@
         <nav>
             <input type="text">
             <button id="add-btn" onclick="Add()">Добавить</button>
-            <button id="clear-btn">Очистить сделанное</button>
+            <button id="clear-btn" onclick="ClearDone()">Очистить сделанное</button>
         </nav>
         
         <div id="task-list">
@@ -64,83 +64,72 @@
     </main>
     
     <script>
-        /*function testVar(){
-            if (true){
-                var x = 10
-            }
-            console.log("testVar:", x)
-        }
         
-        function testLet(){
-            if (true){
-                let x = 10
-                console.log("testLet IF:", x)
-            }
-            console.log("testLet:", x)
-        }
+        let taskArrayText
+        let taskArray
         
-        testVar()
-        testLet()*/
-        
-        //let index = localStorage.getItem("index")
-        //index = index === null ? 0 : index
-        let index = 0
-        // (условие) ? значение если true : значение если false
-        
-        let taskArrayText = localStorage.getItem("taskArray")
-        let taskArray = []
-        
-        let element = ""
-        let j = 0
-        while (j < taskArrayText.length){
-            if (taskArrayText[j] === ",") {
-                console.log(element)
-                taskArray.push(element)
-                element = ""
-            } else if (j === taskArrayText.length - 1){
-                element += taskArrayText[j]
-                console.log(element)
-                taskArray.push(element)
-            } else {
-                element += taskArrayText[j]
-            }
-            j++
+        function TextToArray(){
+            taskArrayText = localStorage.getItem("taskArray")
+            taskArrayText = taskArrayText === null ? "" : taskArrayText
+            taskArray = []
+            
+            let element = ""
+            let j = 0
+            while (j < taskArrayText.length){
+                if (taskArrayText[j] === ",") {
+                    console.log(element)
+                    taskArray.push(element)
+                    element = ""
+                } else if (j === taskArrayText.length - 1){
+                    element += taskArrayText[j]
+                    console.log(element)
+                    taskArray.push(element)
+                } else {
+                    element += taskArrayText[j]
+                }
+                j++
+            }   
         }
         
         
         function Add(){
             let inputBox = document.querySelector("nav input")
             
-            /*let prefab =
-            `<div class="task">
-                <input type="checkbox">
-                <div class="task-text"> ${inputBox.value} </div>
-            </div>`
-            
-            let taskList = document.querySelector("#task-list")
-            taskList.innerHTML += prefab*/
-            
             taskArray.push(inputBox.value)
             
             localStorage.setItem("taskArray", taskArray)
-            
-            index++
-            
-            //localStorage.setItem("index",index)
             
             inputBox.value = ""
             Load()
         }
         
+        function ClearDone(){
+            TextToArray()
+            
+            console.log(taskArray)
+            
+            //pop функция
+            //taskArray.pop()
+            
+            let checkbox = document.querySelector(".task input")
+            console.log(checkbox.checked)
+            
+            //сохранение в localStorage
+            localStorage.setItem("taskArray", taskArray)
+            
+            //перезагрузка интерфейса
+            Load()
+        }
+        
         function Load(){
+            TextToArray()
+            
             let i = 0
             
             let taskList = document.querySelector("#task-list")
             taskList.innerHTML = ""
             
-            //while(i < index)
             while (i < taskArray.length){
-                //let taskText = localStorage.getItem("task" + i)
                 let taskText = taskArray[i]
 
                 let prefab =
@@ -156,6 +145,7 @@
             
         }
         
+        TextToArray()
         Load()
     
     </script>
