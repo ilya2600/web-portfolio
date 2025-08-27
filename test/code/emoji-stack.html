@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emoji Stack</title>
+    <style>
+        #tower{
+            background: lightblue;
+            height: 90vh;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            justify-content: center;
+            font-size: 6vh;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="AddEmoji()">Добавить</button>
+    <button onclick="DeleteEmoji()">Удалить</button>
+    <br>
+    <div id="tower"></div>
+    <script>
+        let emojis = ['🔷','🟨','🟢']
+        let tower = []
+        
+        
+        
+        console.log(Math.random())
+        
+        function AddEmoji(){
+            //document.body.innerHTML += emojis[Math.round(Math.random() * 2)]
+            tower.push(emojis[Math.round(Math.random() * 2)])
+            Show()
+        }
+        
+        function DeleteEmoji(){
+            tower.pop()
+            Show()
+        }
+        
+        function Show(){
+            let i = tower.length - 1
+            document.querySelector("#tower").innerHTML = ""
+            
+            while (i >= 0){
+                document.querySelector("#tower").innerHTML += tower[i] + "<br>"
+                i--
+            }
+        }
+    </script>
+</body>
+</html>

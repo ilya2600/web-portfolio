@@ -2,21 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do App</title>
     <style>
         *{
             box-sizing: border-box;
         }
+        :root{
+            --p-color: lightskyblue;
+            --s-color-1: #eff4b6;
+            --s-color-2: #f8f2aa;
+            --btn-color-1: #8af2c6;
+            --btn-color-2: #eef592;
+            --acc-color-1: #9d9d9d;
+        }
         body{
             margin: 0;
-            background: beige;
+            background: var(--s-color);
+            background: linear-gradient(var(--s-color-1),var(--s-color-2));
+            font-family: monospace;
+            min-height: 100vh;
         }
         nav {
             width: 100%;
-            background-color: lightskyblue;
+            background-color: var(--p-color);
             padding: 20px;
             text-align: center;
-            border-bottom: solid #969696;
+            border-bottom: solid var(--acc-color-1);
         }
         nav input {
             margin: 0;
@@ -25,23 +37,52 @@
             margin-bottom: 10px;
             height: 30px;
         }
+        #buttons{
+            display: flex;
+        }
         #add-btn{
-            width: 49.7%;
-            height: 30px;
+            background: var(--btn-color-1);
+            min-height: 30px;
+            border-color: var(--acc-color-1);
+            flex-grow: 1;
         }
         #clear-btn{
-            width: 49.7%;
-            height: 30px;
+            background: var(--btn-color-2);
+            min-height: 30px;
+            border-color: var(--acc-color-1);
+            flex-grow: 1;
         }
         .task {
             width: 100%;
-            background-color: lightskyblue;
+            max-width: 900px;
+            margin: auto;
+            background-color: var(--p-color);
             margin-top: 20px;
             padding: 20px;
-            border-bottom: solid #969696;
+            border-bottom: solid var(--acc-color-1);
         }
         .task-text{
             display: inline-block;
+            overflow-wrap: break-word;
+        }
+        @media (max-width: 600px){
+            #buttons{
+                flex-direction: column;
+            }
+            nav input {
+                width: 100%;
+                display: block;
+            }
+        }
+        
+        @media (min-width: 900px){
+            nav input {
+                width: 50%;
+                display: inline-block;
+            }
+            #buttons{
+                display: inline-block;
+            }
         }
     </style>
 </head>
@@ -50,8 +91,10 @@
        
         <nav>
             <input type="text">
-            <button id="add-btn" onclick="Add()">Добавить</button>
-            <button id="clear-btn" onclick="ClearDone()">Очистить сделанное</button>
+            <div id="buttons">
+                <button id="add-btn" onclick="Add()">Добавить</button>
+                <button id="clear-btn" onclick="ClearDone()">Очистить сделанное</button>
+            </div>
         </nav>
         
         <div id="task-list">
@@ -111,8 +154,36 @@
             //pop функция
             //taskArray.pop()
             
-            let checkbox = document.querySelector(".task input")
-            console.log(checkbox.checked)
+            let tasks = document.querySelectorAll(".task")
+            
+            let i = 0
+            while (i < tasks.length){
+                let checkbox = tasks[i].querySelector("input")
+                let text = tasks[i].querySelector(".task-text").textContent
+                let taskArrayCopy = taskArray.slice(0, taskArray.length)
+
+                console.log(text, checkbox.checked)
+                
+                if(checkbox.checked){
+                    let j = 0
+                    while (j < taskArray.length){
+                        console.log("условие:",text, taskArray[j], text === taskArray[j], text.length, taskArray[j].length)
+                        
+                        if (text === taskArray[j]){
+                            console.log("1:",taskArrayCopy, text)
+                            console.log("j:",j)
+                            taskArrayCopy.splice(j,j)
+                            console.log("2:",taskArrayCopy, text)
+                            console.log("j:",j)
+                        }
+                        
+                        j++
+                    }
+                    taskArray = taskArrayCopy.slice(0, taskArrayCopy.length)
+                }
+                
+                i++
+            }
             
             //сохранение в localStorage
             localStorage.setItem("taskArray", taskArray)
@@ -135,7 +206,7 @@
                 let prefab =
                 `<div class="task">
                     <input type="checkbox">
-                    <div class="task-text"> ${taskText} </div>
+                    <div class="task-text">${taskText}</div>
                 </div>`
                 
                 taskList.innerHTML += prefab
