@@ -8,10 +8,11 @@
             background: lightblue;
             height: 90vh;
             display: flex;
-            flex-direction: row;
-            align-items: flex-end;
-            justify-content: center;
-            font-size: 6vh;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 4.5vh;
+            user-select: none;
         }
     </style>
 </head>
@@ -19,7 +20,7 @@
     <button onclick="AddEmoji()">Добавить</button>
     <button onclick="DeleteEmoji()">Удалить</button>
     <br>
-    <div id="tower"></div>
+    <div id="tower" onclick="AddEmoji()"></div>
     <script>
         let emojis = ['🔷','🟨','🟢']
         let tower = []
@@ -32,11 +33,15 @@
             //document.body.innerHTML += emojis[Math.round(Math.random() * 2)]
             tower.push(emojis[Math.round(Math.random() * 2)])
             Show()
+            console.log("add")
+            CheckWin()
         }
         
-        function DeleteEmoji(){
+        function DeleteEmoji(event){
             tower.pop()
             Show()
+            console.log("del")
+            event.stopPropagation()
         }
         
         function Show(){
@@ -44,9 +49,27 @@
             document.querySelector("#tower").innerHTML = ""
             
             while (i >= 0){
-                document.querySelector("#tower").innerHTML += tower[i] + "<br>"
+                document.querySelector("#tower").innerHTML +=
+                    `<div onclick="DeleteEmoji(event)">${tower[i]}</div>`
                 i--
             }
+        }
+        
+        function CheckWin(){
+           if(tower.length === 15){
+               let i = 0
+               let chosenEmoji = tower[0]
+               while (i < tower.length){
+                   if(tower[i] === chosenEmoji){
+                        console.log(tower[i])
+                   } else {
+                       console.log("LOSER!")
+                       return
+                   }
+                   i++
+               }
+              console.log("WINNER!")
+            } 
         }
     </script>
 </body>
