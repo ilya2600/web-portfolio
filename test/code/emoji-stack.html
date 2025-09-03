@@ -14,27 +14,58 @@
             font-size: 4.5vh;
             user-select: none;
         }
+        #timeout{
+            font-size: 64px;
+            font-weight: 700;
+            font-family: monospace;
+            height: 90vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        #wins{
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            font-family: monospace;
+        }
     </style>
 </head>
 <body>
-    <button onclick="AddEmoji()">Добавить</button>
-    <button onclick="DeleteEmoji()">Удалить</button>
-    <br>
+   <div id="wins">Wins: 0</div>
     <div id="tower" onclick="AddEmoji()"></div>
+    <div id="timeout">Time Out!</div>
     <script>
+        /*
+            План:
+            1. Выигрыш / Проигрыш:
+                - Счетчик Побед (+)
+                - Счетчик Времени (+)
+                - Ограничить Количество Эмоджи (+)
+        */
+        
+        
         let emojis = ['🔷','🟨','🟢']
         let tower = []
         
+        let wins = 0
+        let startTime = Date.now()
+        let currentTime = Date.now()
+        let gameTime = 10
+        let timer = gameTime
         
         
         console.log(Math.random())
         
         function AddEmoji(){
             //document.body.innerHTML += emojis[Math.round(Math.random() * 2)]
-            tower.push(emojis[Math.round(Math.random() * 2)])
+            if(tower.length === 3){
+                CheckWin()
+            } else {
+                tower.push(emojis[Math.round(Math.random() * 2)])
+                console.log("add")
+            }
             Show()
-            console.log("add")
-            CheckWin()
         }
         
         function DeleteEmoji(event){
@@ -53,23 +84,33 @@
                     `<div onclick="DeleteEmoji(event)">${tower[i]}</div>`
                 i--
             }
+            
+            currentTime = Date.now()
+            if (timer > 0) timer = gameTime - (currentTime - startTime) / 1000
+            else {
+                document.querySelector("#tower").style.display = "none"
+                document.querySelector("#timeout").style.display = "flex"
+            }
+            console.log(timer)
         }
         
         function CheckWin(){
-           if(tower.length === 15){
                let i = 0
                let chosenEmoji = tower[0]
                while (i < tower.length){
                    if(tower[i] === chosenEmoji){
                         console.log(tower[i])
                    } else {
-                       console.log("LOSER!")
+                       console.log("NO WIN!")
                        return
                    }
                    i++
                }
-              console.log("WINNER!")
-            } 
+            console.log("WINNER!")
+            wins++
+            console.log(wins)
+            document.querySelector("#wins").textContent = "Wins:" + wins
+            tower = []
         }
     </script>
 </body>
