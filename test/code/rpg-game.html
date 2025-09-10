@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RPG GAME</title>
+    <style>
+        #player-hp-bar-bg {
+            height: 20px;
+            background: #4d4d4d;
+            margin: 10px;
+            border-radius: 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+        }
+        #player-hp-bar {
+            height: 20px;
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="player-hp-bar-bg">
+        <div id="player-hp-bar"></div>
+    </div>
+
+    <input type="text" id="text-input" oninput="CheckLetter()"> <button id="text-btn">Отправить</button>
+    <script>
+        let playerBarHP = document.querySelector("#player-hp-bar")
+        let HP = 50
+        let maxHP = 50
+        
+        let currentWord = "javascript"
+        let textInput = document.querySelector("#text-input")
+        
+        function CheckLetter(){
+            if(textInput.value === currentWord){
+                console.log("Correct!")
+            } else if (textInput.value.length === currentWord.length) {
+                HP -= 5
+            }
+            console.log(HP)
+            playerBarHP.style.width = `${(HP/maxHP)*100}%`
+        }
+        
+        playerBarHP.style.width = `${(HP/maxHP)*100}%`
+        
+        console.log(50/100)
+        
+        
+    </script>
+</body></html>
