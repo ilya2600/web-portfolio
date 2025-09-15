@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>RPG GAME</title>
@@ -13,41 +14,123 @@
             border-width: 1px;
             overflow: hidden;
         }
+
         #player-hp-bar {
             height: 20px;
             background: green;
+        }
+
+        #enemy-hp-bar-bg {
+            height: 20px;
+            background: #4d4d4d;
+            margin: 10px;
+            border-radius: 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+        }
+
+        #enemy-hp-bar {
+            height: 20px;
+            background: #ff1b1b;
+        }
+        
+        #enemy-img {
+            font-size: 120px;
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
+    <div id="enemy-hp-bar-bg">
+        <div id="enemy-hp-bar"></div>
+    </div>
+    
+    <div id="enemy-img">⛔</div>
+
     <div id="player-hp-bar-bg">
         <div id="player-hp-bar"></div>
     </div>
 
+
+    <div id="current-word">...</div>
     <input type="text" id="text-input" oninput="CheckLetter()"> <button id="text-btn">Отправить</button>
     <script>
+        /*
+            План:
+            1. Тренажер Печати
+                - Проверка Совпадения Слова (+)
+                - Проверка Ошибок (+)
+                - Набор Слов (+)
+            2. Атака Игрока (+)
+            3. Атака Врага 
+        */
+        
         let playerBarHP = document.querySelector("#player-hp-bar")
         let HP = 50
         let maxHP = 50
         
-        let currentWord = "javascript"
-        let textInput = document.querySelector("#text-input")
+        let enemyBarHP = document.querySelector("#enemy-hp-bar")
+        let enemyHP = 50
+        let enemyMaxHP = 50
         
-        function CheckLetter(){
-            if(textInput.value === currentWord){
+        let enemyAttackRate = 4
+        let enemyTimeStart = Date.now()
+        let enemyTime = 0
+        
+        let enemyImgs = ["🧟‍♂️","👻","👹"]
+        let enemyImgBox = document.querySelector("#enemy-img")
+        enemyImgBox.textContent = enemyImgs[Math.round(Math.random() * (enemyImgs.length - 1))]
+
+        let wordList = ["javascript", "python", "html", "css", "math"]
+        let currentWordIndex = Math.round(Math.random() * (wordList.length - 1))
+        let currentWord = wordList[currentWordIndex]
+        let textInput = document.querySelector("#text-input")
+        let currentWordBox = document.querySelector("#current-word")
+        currentWordBox.textContent = currentWord
+
+        function CheckLetter() {
+            enemyTime = (Date.now() - enemyTimeStart) / 1000
+            console.log("eTime:", enemyTime)
+            if(enemyTime > enemyAttackRate){
+                HP -= 10
+                enemyTimeStart = Date.now()
+            }
+            
+            let i = 0
+            while(i < textInput.value.length){
+                if(currentWord[i] !== textInput.value[i]){
+                    HP -= 1
+                }
+                i++
+            }
+            if (textInput.value === currentWord) {
+                enemyHP -= 15
+                if(enemyHP < 0) {
+                    enemyHP = enemyMaxHP
+                    HP = maxHP
+                }
+                NewWord()
                 console.log("Correct!")
             } else if (textInput.value.length === currentWord.length) {
                 HP -= 5
             }
-            console.log(HP)
+            console.log(enemyHP)
             playerBarHP.style.width = `${(HP/maxHP)*100}%`
+            enemyBarHP.style.width = `${(enemyHP/enemyMaxHP)*100}%`
         }
         
+        function NewWord(){
+            textInput.value = ""
+            currentWordIndex = Math.round(Math.random() * 2)
+            currentWord = wordList[currentWordIndex]
+            currentWordBox.textContent = currentWord
+        }
+
         playerBarHP.style.width = `${(HP/maxHP)*100}%`
-        
-        console.log(50/100)
-        
-        
+        enemyBarHP.style.width = `${(enemyHP/enemyMaxHP)*100}%`
+
+        console.log(50 / 100)
     </script>
 </body></html>
