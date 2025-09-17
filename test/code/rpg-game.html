@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <title>RPG GAME</title>
     <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
         #player-hp-bar-bg {
             height: 20px;
             background: #4d4d4d;
@@ -34,28 +40,67 @@
             height: 20px;
             background: #ff1b1b;
         }
-        
+
         #enemy-img {
             font-size: 120px;
             text-align: center;
+        }
+        
+        #enemy-ui{
+            width: 400px;
+            background: pink;
+            text-align: center;
+            font-size: 32px;
+        }
+        
+        #player-ui{
+            width: 400px;
+            background: lightgreen;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        #current-word{
+            font-size: 32px;
+        }
+        
+        #text-input{
+            width: 200px;
+            font-size: 32px;
+        }
+        
+        #text-btn{
+            font-size: 16px;
+        }
+        
+        #player-hp-bar-bg{
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
-    <div id="enemy-hp-bar-bg">
-        <div id="enemy-hp-bar"></div>
+    <div id="enemy-ui">
+        <div id="enemy-name">ИМЯ ВРАГА</div>
+        <div id="enemy-hp-bar-bg">
+            <div id="enemy-hp-bar"></div>
+        </div>
+
+        <div id="enemy-img">⛔</div>
     </div>
     
-    <div id="enemy-img">⛔</div>
+    <div id="player-ui">
+        <div id="player-hp-bar-bg">
+            <div id="player-hp-bar"></div>
+        </div>
 
-    <div id="player-hp-bar-bg">
-        <div id="player-hp-bar"></div>
+        <div id="current-word">...</div>
+        <input type="text" id="text-input" oninput="CheckLetter()">
+        <button id="text-btn">Продолжить</button>
     </div>
 
-
-    <div id="current-word">...</div>
-    <input type="text" id="text-input" oninput="CheckLetter()"> <button id="text-btn">Отправить</button>
     <script>
         /*
             План:
@@ -66,22 +111,27 @@
             2. Атака Игрока (+)
             3. Атака Врага 
         */
-        
+
         let playerBarHP = document.querySelector("#player-hp-bar")
         let HP = 50
         let maxHP = 50
-        
+
         let enemyBarHP = document.querySelector("#enemy-hp-bar")
         let enemyHP = 50
         let enemyMaxHP = 50
-        
+
         let enemyAttackRate = 4
         let enemyTimeStart = Date.now()
         let enemyTime = 0
         
-        let enemyImgs = ["🧟‍♂️","👻","👹"]
+        let enemyNames = ["Зомби", "Призрак", "Монстр"]
+        let enemyNameBox = document.querySelector("#enemy-name")
+        
+        let enemyImgs = ["🧟‍♂️", "👻", "👹"]
         let enemyImgBox = document.querySelector("#enemy-img")
-        enemyImgBox.textContent = enemyImgs[Math.round(Math.random() * (enemyImgs.length - 1))]
+        let enemyIndex = Math.round(Math.random() * (enemyImgs.length - 1))
+        enemyImgBox.textContent = enemyImgs[enemyIndex]
+        enemyNameBox.textContent = enemyNames[enemyIndex]
 
         let wordList = ["javascript", "python", "html", "css", "math"]
         let currentWordIndex = Math.round(Math.random() * (wordList.length - 1))
@@ -90,24 +140,34 @@
         let currentWordBox = document.querySelector("#current-word")
         currentWordBox.textContent = currentWord
 
-        function CheckLetter() {
+
+        setInterval(EnemyAttackLoop, 1000)
+
+        function EnemyAttackLoop() {
             enemyTime = (Date.now() - enemyTimeStart) / 1000
             console.log("eTime:", enemyTime)
-            if(enemyTime > enemyAttackRate){
+            if (enemyTime > enemyAttackRate) {
                 HP -= 10
                 enemyTimeStart = Date.now()
             }
-            
+            Show()
+        }
+
+        function CheckLetter() {
+
             let i = 0
-            while(i < textInput.value.length){
-                if(currentWord[i] !== textInput.value[i]){
+            while (i < textInput.value.length) {
+                if (currentWord[i] !== textInput.value[i]) {
                     HP -= 1
                 }
                 i++
             }
             if (textInput.value === currentWord) {
-                enemyHP -= 15
-                if(enemyHP < 0) {
+                enemyHP -= 25
+                if (enemyHP <= 0) {
+                    enemyIndex = Math.round(Math.random() * (enemyImgs.length - 1))
+                    enemyImgBox.textContent = enemyImgs[enemyIndex]
+                    enemyNameBox.textContent = enemyNames[enemyIndex]
                     enemyHP = enemyMaxHP
                     HP = maxHP
                 }
@@ -117,11 +177,15 @@
                 HP -= 5
             }
             console.log(enemyHP)
+            Show()
+        }
+
+        function Show() {
             playerBarHP.style.width = `${(HP/maxHP)*100}%`
             enemyBarHP.style.width = `${(enemyHP/enemyMaxHP)*100}%`
         }
-        
-        function NewWord(){
+
+        function NewWord() {
             textInput.value = ""
             currentWordIndex = Math.round(Math.random() * 2)
             currentWord = wordList[currentWordIndex]
