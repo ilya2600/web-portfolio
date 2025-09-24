@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pet World</title>
+    <style>
+        .pet {
+            display: inline-block;
+            text-align: center;
+            position: absolute;
+            left: 25%;
+            top: 25%;
+        }
+        #play-area{
+            background-color:#91e091;
+            width: 500px;
+            height: 500px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ui">
+        <input id="name" type="text" placeholder="Имя..." value="Питомец">
+        <input id="icon" type="text" placeholder="Иконка..." value="💥">
+        <input id="color" type="color" placeholder="Цвет имени...">
+        <input id="size" type="number" placeholder="Размер..." value=12>
+        <input id="speed" type="number" placeholder="Скорость...">
+        <button onclick="AddPet()">Создать</button>
+    </div>
+
+    <div id="play-area">
+        <div class='pet'>
+            <div id="pet-name">Питомец</div>
+            <div id="pet-icon">💥</div>
+        </div>
+    </div>
+    
+    <button onclick="AddTestLog()">Test</button>
+
+    <script>
+        
+
+        let petObj = {}
+
+        function AddPet() {
+            let nameInp = document.querySelector("#name")
+            let iconInp = document.querySelector("#icon")
+            let colorInp = document.querySelector("#color")
+            let sizeInp = document.querySelector("#size")
+            let speedInp = document.querySelector("#speed")
+
+            petObj.name = nameInp.value
+            petObj.icon = iconInp.value
+            petObj.color = colorInp.value
+            petObj.size = sizeInp.value
+            petObj.speed = speedInp.value
+
+            /*pet.querySelector("#pet-name").textContent = petObj.name
+            pet.querySelector("#pet-icon").textContent = petObj.icon
+            
+            pet.style.color = petObj.color
+            pet.querySelector("#pet-icon").style.fontSize = petObj.size + "px"*/
+            
+            let playArea = document.querySelector("#play-area")
+            playArea.innerHTML += `<div class='pet'>
+                                        <div id="pet-name">Питомец</div>
+                                        <div id="pet-icon">💥</div>
+                                    </div>`
+            
+        }
+
+        setInterval(PetMove, 200)
+
+        //pet.style.left = "25%"
+        //pet.style.top = "25%"
+
+        function PetMove() {
+            //console.log(pet.style.left) 
+            //console.log(Number("124px"[0]))
+            
+            //let pet = document.querySelectorAll(".pet")[0]
+            let pet = document.querySelector(".pet")
+
+            let strPosX = pet.style.left
+            let strPosY = pet.style.top
+
+            let posX = ""
+            let posY = ""
+
+            let i = 0
+            while (i < strPosX.length) {
+                if (strPosX[i] === "%") break
+                posX += strPosX[i]
+                i++
+            }
+            posX = Number(posX)
+
+            i = 0
+            while (i < strPosY.length) {
+                if (strPosY[i] === "%") break
+                posY += strPosY[i]
+                i++
+            }
+            posY = Number(posY)
+
+            let test = 3
+            let randX = (Math.random() * test) - (test / 2)
+            let randY = (Math.random() * test) - (test / 2)
+
+            posX += randX
+            posY += randY
+
+            if (posX > 100) posX = 100
+            if (posX < 0) posX = 0
+
+            if (posY > 100) posY = 100
+            if (posY < 0) posY = 0
+
+            pet.style.left = posX + "%"
+            pet.style.top = posY + "%"
+
+        }
+        
+        setInterval(TestLog, 1500)
+        
+        let tName
+        
+        function Test(){
+            TestLog(tName)
+        }
+        
+        function TestLog(testName){
+            console.log(testName + " moved!")
+        }
+        
+        function AddTestLog(){
+            console.log("new pet!")
+            tName = Math.random()
+            setInterval(Test, 500)
+        }
+    </script>
+</body></html>

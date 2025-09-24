@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reaction Test</title>
+</head>
+<body onclick="Click()" style="height: 100vh">
+    
+    <script>
+        
+        let startTime
+        let result
+        
+        setTimeout(Start, 2 + Math.random() * 3000)
+        
+        function Start(){
+            startTime = Date.now()
+            document.body.style.backgroundColor = "green"
+        }
+        
+        function Click(){
+            result = Date.now() - startTime
+            console.log(result)
+            document.body.style.backgroundColor = "blue"
+        }
+    </script>
+</body>
+</html>
