@@ -5,6 +5,30 @@
     <meta charset="UTF-8">
     <title>Pet World</title>
     <style>
+        /*
+        отступы:
+            - padding
+            - margin
+        цвета:
+            - color
+            - background-color
+            - background: linear-gradient()
+        шрифты:
+            - font-size, weight, style, family
+        граница:
+            - border-color
+            - border-width
+            - border-style
+            - border-radius
+        тень:
+            - box-shadow
+            - text-shadow
+        расположение:
+            - display: flex
+            - flex-direction
+            - justify-content
+            - align-items / align-content
+        */
         .pet {
             display: inline-block;
             text-align: center;
@@ -12,8 +36,9 @@
             left: 25%;
             top: 25%;
         }
-        #play-area{
-            background-color:#91e091;
+
+        #play-area {
+            background-color: #91e091;
             width: 500px;
             height: 500px;
             position: relative;
@@ -27,23 +52,18 @@
         <input id="icon" type="text" placeholder="Иконка..." value="💥">
         <input id="color" type="color" placeholder="Цвет имени...">
         <input id="size" type="number" placeholder="Размер..." value=12>
-        <input id="speed" type="number" placeholder="Скорость...">
+        <input id="speed" type="number" placeholder="Скорость..." value=10>
         <button onclick="AddPet()">Создать</button>
     </div>
 
     <div id="play-area">
-        <div class='pet'>
-            <div id="pet-name">Питомец</div>
-            <div id="pet-icon">💥</div>
-        </div>
+        
     </div>
-    
-    <button onclick="AddTestLog()">Test</button>
+
 
     <script>
+        let petObjects = []
         
-
-        let petObj = {}
 
         function AddPet() {
             let nameInp = document.querySelector("#name")
@@ -51,28 +71,59 @@
             let colorInp = document.querySelector("#color")
             let sizeInp = document.querySelector("#size")
             let speedInp = document.querySelector("#speed")
+            
+            let petObj = {}
 
             petObj.name = nameInp.value
             petObj.icon = iconInp.value
             petObj.color = colorInp.value
             petObj.size = sizeInp.value
             petObj.speed = speedInp.value
+            petObj.hunger = 10
+            
+            petObjects.push(petObj)
+            
+            console.log(petObjects)
 
             /*pet.querySelector("#pet-name").textContent = petObj.name
             pet.querySelector("#pet-icon").textContent = petObj.icon
             
             pet.style.color = petObj.color
             pet.querySelector("#pet-icon").style.fontSize = petObj.size + "px"*/
-            
+
             let playArea = document.querySelector("#play-area")
             playArea.innerHTML += `<div class='pet'>
-                                        <div id="pet-name">Питомец</div>
-                                        <div id="pet-icon">💥</div>
+                                        <div id="pet-name" style="color:${petObj.color}">${petObj.name}</div>
+                                        <div id="pet-icon" style="font-size:${petObj.size}px">${petObj.icon}</div>
                                     </div>`
-            
+
         }
 
-        setInterval(PetMove, 200)
+        setInterval(MainLoop, 150)
+        
+        function MainLoop(){
+            PetHunger()
+            PetMove()
+        }
+        
+        function PetHunger(){
+            let j = 0
+            while (j < petObjects.length) {
+                let hVal = 0.1
+                petObjects[j].hunger -= hVal - (hVal / petObjects[j].size)
+                console.log(petObjects[j].name, petObjects[j].hunger)
+                
+                let petElements = document.querySelectorAll(".pet")
+                let pet = petElements[j]
+                
+                if (petObjects[j].hunger <= 0) {
+                    pet.querySelector("#pet-icon").textContent = "☠"
+                }
+                
+                
+                j++
+            }
+        }
 
         //pet.style.left = "25%"
         //pet.style.top = "25%"
@@ -80,66 +131,59 @@
         function PetMove() {
             //console.log(pet.style.left) 
             //console.log(Number("124px"[0]))
-            
-            //let pet = document.querySelectorAll(".pet")[0]
-            let pet = document.querySelector(".pet")
 
-            let strPosX = pet.style.left
-            let strPosY = pet.style.top
+            let petElements = document.querySelectorAll(".pet")
 
-            let posX = ""
-            let posY = ""
+            let j = 0
+            while (j < petElements.length) {
+                let petObj = petObjects[j]
+                if (petObjects[j].hunger <= 0) continue
+                let pet = petElements[j]
+                
+                pet.querySelector("#pet-name").textContent = petObj.name + `(${Math.ceil(petObj.hunger)})`
 
-            let i = 0
-            while (i < strPosX.length) {
-                if (strPosX[i] === "%") break
-                posX += strPosX[i]
-                i++
+                let strPosX = pet.style.left
+                let strPosY = pet.style.top
+
+                let posX = ""
+                let posY = ""
+
+                let i = 0
+                while (i < strPosX.length) {
+                    if (strPosX[i] === "%") break
+                    posX += strPosX[i]
+                    i++
+                }
+                posX = Number(posX)
+
+                i = 0
+                while (i < strPosY.length) {
+                    if (strPosY[i] === "%") break
+                    posY += strPosY[i]
+                    i++
+                }
+                posY = Number(posY)
+
+                let speed = petObjects[j].speed
+                let randX = (Math.random() * speed) - (speed / 2)
+                let randY = (Math.random() * speed) - (speed / 2)
+
+                posX += randX
+                posY += randY
+
+                if (posX > 100) posX = 100
+                if (posX < 0) posX = 0
+
+                if (posY > 100) posY = 100
+                if (posY < 0) posY = 0
+
+                pet.style.left = posX + "%"
+                pet.style.top = posY + "%"
+                j++
             }
-            posX = Number(posX)
 
-            i = 0
-            while (i < strPosY.length) {
-                if (strPosY[i] === "%") break
-                posY += strPosY[i]
-                i++
-            }
-            posY = Number(posY)
 
-            let test = 3
-            let randX = (Math.random() * test) - (test / 2)
-            let randY = (Math.random() * test) - (test / 2)
 
-            posX += randX
-            posY += randY
-
-            if (posX > 100) posX = 100
-            if (posX < 0) posX = 0
-
-            if (posY > 100) posY = 100
-            if (posY < 0) posY = 0
-
-            pet.style.left = posX + "%"
-            pet.style.top = posY + "%"
-
-        }
-        
-        setInterval(TestLog, 1500)
-        
-        let tName
-        
-        function Test(){
-            TestLog(tName)
-        }
-        
-        function TestLog(testName){
-            console.log(testName + " moved!")
-        }
-        
-        function AddTestLog(){
-            console.log("new pet!")
-            tName = Math.random()
-            setInterval(Test, 500)
         }
     </script>
 </body></html>
