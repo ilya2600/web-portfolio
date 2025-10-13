@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slide Show</title>
+    <!--<link rel="stylesheet" href="css/slide-feed.css">-->
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(#82ddff,#ffeb53,#a0d877)
+        }
+        .slider {
+            width: 400px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 400px;
+        }
+        .slide-feed {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: Spin 5s infinite linear;
+        }
+        img{
+            width: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+        }
+        img:nth-child(1){
+            transform: rotateY(0deg) translateZ(200px)
+        }
+        
+        img:nth-child(2){
+            transform: rotateY(0deg) translateZ(-200px)
+        }
+        
+        img:nth-child(3){
+            transform: rotateY(90deg) translateZ(200px)
+        }
+        
+        img:nth-child(4){
+            transform: rotateY(90deg) translateZ(-200px)
+        }
+        
+        .platform {
+            width: 200px;
+            height: 200px;
+            background: red;
+            transform: rotateX(90deg) translateZ(-100px) translateX(-60px);
+            border-radius: 100%;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 100px;
+            font-family: sans-serif;
+            border: solid 10px;
+            border-bottom-color: transparent;
+            border-top-color: transparent;
+        }
+        
+        
+        @keyframes Spin {
+            100%{
+                transform: rotateY(360deg)
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <div class="slide-feed">
+            <img src="/test/design/img/random/1.jpg" alt="">
+            
+            <img src="/test/design/img/random/2.jpeg" alt="">
+            <img src="/test/design/img/random/3.jpg" alt="">
+            <img src="/test/design/img/random/4.jpg" alt="">
+            <div class="platform">X</div>
+            
+            <!--
+            <img src="img/1.jpg" alt="">
+            <img src="img/2.jpeg" alt="">
+            <img src="img/3.jpg" alt="">
+            <img src="img/4.jpg" alt="">
+            -->
+        </div>
+    </div>
+</body></html>

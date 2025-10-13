@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: gray;
+        }
+
+        .picture {
+            position: relative;
+            width: 60vw;
+            height: 40vw;
+            background-color: #74dfff;
+            overflow: hidden;
+            animation-name: SkyAnim;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes SkyAnim {
+            15%{
+                background-color: #74dfff;
+            }
+            40% {
+                background-color: #212f4a;
+            }
+            75% {
+                background-color: #212f4a;
+            }
+            100%{
+                background-color: #74dfff;
+            }
+        }
+
+        .sand {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 35%;
+            background-color: #f2e267;
+            z-index: 1;
+        }
+
+        .pyramid {
+            position: absolute;
+            bottom: 10%;
+            left: 35%;
+            width: 20vw;
+            height: 20vw;
+            background-color: #fdef82;
+            transform: rotate(45deg);
+        }
+
+        .sun {
+            width: 5vw;
+            height: 5vw;
+            background-color: yellow;
+            border-radius: 100%;
+            margin-left: 6vw;
+        }
+        
+        .moon {
+            width: 5vw;
+            height: 5vw;
+            background-color: white;
+            border-radius: 100%;
+            margin-right: 6vw;
+        }
+        
+        .sun-moon-box {
+            width: 100%;
+            position: absolute;
+            top: 60%;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            animation-name: SunMoonAnim;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            transform: rotateZ(90deg)
+        }
+        
+        @keyframes SunMoonAnim{
+            100%{
+                transform: rotateZ(450deg)
+            }
+        }
+
+        .cloud1 {
+            width: 15vw;
+            height: 3.5vw;
+            background-color: white;
+            position: absolute;
+            top: 15%;
+            left: 0;
+        }
+
+        .cloud2 {
+            width: 15vw;
+            height: 3.5vw;
+            background-color: white;
+            position: absolute;
+            top: 20%;
+            left: 15%;
+        }
+
+        .cloud3 {
+            width: 15vw;
+            height: 3.5vw;
+            background-color: white;
+            position: absolute;
+            top: 25%;
+            right: 0;
+        }
+
+        .cloud4 {
+            width: 15vw;
+            height: 3.5vw;
+            background-color: white;
+            position: absolute;
+            top: 30%;
+            right: 15%;
+        }
+
+        .clouds {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: translateX(0%);
+            animation-name: CloudsAnim;
+            animation-duration: 12s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes CloudsAnim {
+            100% {
+                transform: translateX(100%)
+            }
+        }
+
+        .clouds2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: translateX(-100%);
+            animation-name: CloudsAnim2;
+            animation-duration: 12s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes CloudsAnim2 {
+            100% {
+                transform: translateX(0%)
+            }
+        }
+        
+
+
+    </style>
+</head>
+
+<body>
+    <div class="picture">
+        <div class="sand"></div>
+        <div class="pyramid"></div>
+        <div class="sun-moon-box">
+            <div class="sun"></div>
+            <div class="moon"></div>
+        </div>
+        <div class="clouds">
+            <div class="cloud1"></div>
+            <div class="cloud2"></div>
+            <div class="cloud3"></div>
+            <div class="cloud4"></div>
+        </div>
+        <div class="clouds2">
+            <div class="cloud1"></div>
+            <div class="cloud2"></div>
+            <div class="cloud3"></div>
+            <div class="cloud4"></div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Callback Functions</title>
+</head>
+<body>
+   
+   <button onclick="Attack()">Атака</button>
+   <button onclick="Heal()">Лечение</button>
+   
+   <br><br><br>
+   
+   <button onclick="Action(cAttack)">Атака</button>
+   <button onclick="Action(cHeal)">Лечение</button>
+    
+    <script>
+        function Attack(){
+            let num1 = prompt("Введите число для атаки 💥:")
+            alert("💥 Вы атаковали на: " + num1)
+        }
+        
+        function Heal(){
+            let num2 = prompt("Введите число для лечения 💖:")
+            alert("💖 Вы вылечились на: " + num2)
+        }
+        
+        function Action(someAction){
+            let num = prompt("Введите число для действия:")
+            
+            someAction(num)
+        }
+        
+        function cAttack(val){
+            
+            alert("💥 Вы атаковали на: " + val)
+        }
+        
+        function cHeal(val){
+            
+            alert("💖 Вы вылечились на: " + val)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slide Show</title>
+    <style>
+        .slider {
+            overflow: hidden;
+            width: 400px;
+            height: 200px;
+            background: red;
+            position: relative;
+        }
+
+        .slider-feed {
+            overflow: hidden;
+            width: 100%;
+            background: green;
+        }
+
+        img {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        
+        /*img:hover{
+            opacity: 1;
+        }*/
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <div class="slide-feed">
+            <img src="/test/design/img/random/1.jpg" alt="">
+            <img src="/test/design/img/random/2.jpeg" alt="">
+            <img src="/test/design/img/random/3.jpg" alt="">
+            <img src="/test/design/img/random/4.jpg" alt="">
+        </div>
+    </div>
+    <button onclick="Left()">◀</button>
+    <button onclick="Right()">▶</button>
+    
+    <script>
+        let pictures = document.querySelectorAll("img")
+        let prevIndex = 0
+        let index = 0
+        
+        function Left(){
+            index--
+            ShowPicture()
+        }
+        
+        function Right(){
+            index++
+            ShowPicture()
+        }
+        
+        function ShowPicture(){
+            pictures[index].style.opacity = 1
+            pictures[prevIndex].style.opacity = 0
+            prevIndex = index
+        }
+    </script>
+</body></html>
