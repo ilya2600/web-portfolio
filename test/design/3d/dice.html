@@ -19,13 +19,13 @@
             justify-content: center;
             align-items: center;
             
-            transform: translateY(100px) rotateY(35deg);
+            transform: translateY(0px) rotateY(0deg);
             transform-style: preserve-3d;
-            background: pink;
             height: 400px;
             width: 20px;
             
-            animation: Spin 5s infinite linear
+            /transition: 1s cubic-bezier(.27, -0.47, .01, 1.47);
+            transition: 2.5s cubic-bezier(0, -10.4, 0, 3.5);
         }
 
         div {
@@ -33,6 +33,14 @@
             width: 100px;
             height: 100px;
             transform-style: preserve-3d;
+            font-size: 64px;
+            font-family: sans-serif;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            user-select: none;
         }
 
         div:nth-child(1) {
@@ -65,21 +73,10 @@
             transform:  rotateX(-90deg) translateZ(50px)
         }
         
-        @keyframes Spin {
-            0%{
-                transform: translateY(100px) rotateY(0deg);
-            }
-            50%{
-                transform: translateY(-100px) rotateY(180deg);
-            }
-            100%{
-                transform: translateY(100px) rotateY(360deg);
-            }
-        }
     </style>
 </head>
 
-<body>
+<body onclick="Roll()">
     <main>
         <div>1</div>
         <div>2</div>
@@ -88,4 +85,16 @@
         <div>5</div>
         <div>6</div>
     </main>
+    
+    <script>
+        var cube = document.querySelector("main")
+        
+        function Roll(){
+            let x = Math.round(Math.random() * 4) * 90
+            let y = Math.round(Math.random() * 4) * 90
+            let z = Math.round(Math.random() * 4) * 90
+            
+            cube.style.transform = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`
+        }
+    </script>
 </body></html>

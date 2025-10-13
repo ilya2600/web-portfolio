@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            margin: 0;
+            height: 400px;
+            /perspective: 500px;
+        }
+        #left{
+            background: pink;
+            flex: 1;
+            perspective: 500px;
+        }
+        #right{
+            background: orange;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 500px;
+            /transform-style: preserve-3d;
+        }
+        img{
+            width: 300px;
+            border-radius: 25px;
+            border: solid 6px;
+            border-color: #dbdbdb;
+            border-style: ridge;
+            transform: rotateY(-15deg) rotateX(10deg);
+            animation-name: ImgIdle;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes ImgIdle {
+            0% {
+                transform: rotateY(-5deg) rotateX(10deg)
+            }
+            50%{
+                transform: rotateY(5deg) rotateX(10deg)
+            }
+            100%{
+                transform: rotateY(-5deg) rotateX(10deg)
+            }
+        }
+        #title{
+            font-size: 36px;
+            font-family: sans-serif;
+            font-weight: 600;
+            transform: rotateY(25deg) translateY(55px) translateX(35px)
+        }
+        #subtitle{
+            font-size: 24px;
+            font-family: sans-serif;
+            font-weight: 600;
+            transform: rotateY(-25deg) translateY(85px) translateX(0px)
+        }
+        #text{
+            font-size: 15px;
+            font-family: sans-serif;
+            font-weight: 600;
+            transform: translateY(185px) translateX(25px)
+        }
+    </style>
+</head>
+
+<body>
+    <div id="left">
+        <div id="title">Свобода от проводов</div>
+        <div id="subtitle">Беспроводные наушники с кристально чистым звуком</div>
+        <div id="text">Технологии, делающие жизнь проще</div>
+    </div>
+    <div id="right">
+        <img src="/test/design/img/random/p4.jpg" width=200 alt="">
+    </div>
+</body></html>
