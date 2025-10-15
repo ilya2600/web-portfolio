@@ -10,6 +10,7 @@
             position: relative;
             perspective: 500px;
             height: 100vh;
+            
             display: flex;
             justify-content: center;
             align-items: center;
@@ -30,12 +31,53 @@
         }
         #ground{
             position: absolute;
-            background: lightgreen;
+            background:
+                radial-gradient(rgba(255,255,255,0.2),rgba(0,0,0,0.8)),
+                repeating-linear-gradient(45deg, #6ed86e 0 10px, lightgreen 0 20px);
             width: 1000px;
             height: 1000px;
             transform: rotateX(90deg);
             border-radius: 100%;
         }
+        #tent{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+        }
+        .wall{
+            position: absolute;
+        }
+        .wall:nth-child(1){
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, green 49%,black,green 51%);
+            transform: rotateZ(45deg) translateZ(100px);
+            border: black 2px solid;
+        }
+        .wall:nth-child(2){
+            width: 100px;
+            height: 100px;
+            background: green;
+            transform: rotateZ(45deg) translateZ(-100px);
+            border: black 2px solid;
+        }
+        .wall:nth-child(3){
+            width: 200px;
+            height: 100px;
+            background: green;
+            transform: translateX(70px) rotateY(90deg) rotateX(45deg) translateY(-50px);
+            border: black 2px solid;
+        }
+        .wall:nth-child(4){
+            width: 200px;
+            height: 100px;
+            background: green;
+            transform: translateX(-70px) rotateY(-90deg) rotateX(45deg) translateY(-50px);
+            border: black 2px solid;
+        }
+        
         @keyframes Spin {
             0%{
                 transform: translateY(100px) rotateY(0deg);
