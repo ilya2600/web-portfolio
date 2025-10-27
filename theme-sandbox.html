@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Sandbox</title>
+
+    <style>
+        /* ==========================
+   🎨 THEME VARIABLES
+   ========================== */
+        :root {
+            /* COLORS */
+            --color-bg: #f9f9fb;
+            --color-surface: #ffffff;
+            --color-text: #222;
+            --color-muted: #666;
+            --color-primary: #0077ff;
+            --color-secondary: #00d2ff;
+            --color-accent: #ff5f6d;
+
+            /* TYPOGRAPHY */
+            --font-heading: monospace;
+            --font-body: sans-serif;
+
+            /* SPACING */
+            --space-xs: 0.25rem;
+            --space-s: 0.5rem;
+            --space-m: 1rem;
+            --space-l: 2rem;
+            --space-xl: 4rem;
+
+            /* RADIUS & SHADOW */
+            --radius: 0.75rem;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ==========================
+   🧱 BASE STYLES
+   ========================== */
+        *,
+            {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-m);
+            line-height: 1.6;
+        }
+
+        /* ==========================
+   ✨ LAYOUT & ELEMENTS
+   ========================== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--color-surface);
+            padding: var(--space-m) var(--space-l);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: var(--space-xl);
+        }
+
+        header h1 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+        }
+
+        nav a {
+            margin-left: var(--space-m);
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: var(--space-xl) var(--space-l);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: #fff;
+            border-radius: var(--radius);
+            margin-bottom: var(--space-xl);
+        }
+
+        .hero h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: var(--space-s);
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Buttons */
+        .buttons {
+            display: flex;
+            gap: var(--space-m);
+            justify-content: center;
+            margin-top: var(--space-l);
+        }
+
+        .button {
+            padding: var(--space-s) var(--space-l);
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .button--primary {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        .button--primary:hover {
+            opacity: 0.9;
+        }
+
+        .button--ghost {
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .button--ghost:hover {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        /* Cards */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-l);
+            margin-top: var(--space-xl);
+        }
+
+        .card {
+            flex-grow: 1;
+            background: var(--color-surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: var(--space-l);
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h3 {
+            font-family: var(--font-heading);
+            color: var(--color-primary);
+            margin-bottom: var(--space-s);
+        }
+
+        .card p {
+            color: var(--color-muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: var(--space-xl);
+            padding-top: var(--space-l);
+            border-top: 2px solid var(--color-muted);
+            color: var(--color-muted);
+            font-size: 0.9rem;
+        }
+
+        #grayscaleSlider {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            width: 150px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="range" id="grayscaleSlider" min="0" max="100" value="0" title="Grayscale Slider">
+    <header>
+        <h1>Песочница Темы</h1>
+        <nav>
+            <a href="#">Главная</a>
+            <a href="#">Проекты</a>
+            <a href="#">Контакты</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Экспериментируйте с темой</h2>
+        <p>Изменяйте переменные в <strong>:root</strong>, чтобы увидеть, как обновляются цвета, шрифты, скругления и тени.</p>
+        <div class="buttons">
+            <button class="button button--primary">Основная</button>
+            <button class="button button--ghost">Призрачная</button>
+        </div>
+    </section>
+
+    <section class="cards">
+        <article class="card">
+            <h3>Карточка Один</h3>
+            <p>Здесь видно, как взаимодействуют поверхность, скругление и тень.</p>
+        </article>
+        <article class="card">
+            <h3>Карточка Два</h3>
+            <p>Попробуйте изменить <code>--radius</code> или <code>--shadow</code> в <strong>:root</strong>, чтобы увидеть разницу.</p>
+        </article>
+        <article class="card">
+            <h3>Карточка Три</h3>
+            <p>Попробуйте поиграть с <code>--color-primary</code> или <code>--color-bg</code>.</p>
+        </article>
+    </section>
+
+    <footer>
+        Песочница Темы — Играй. Пробуй. Учись.
+    </footer>
+
+
+    <script>
+        const slider = document.getElementById('grayscaleSlider');
+        slider.addEventListener('input', () => {
+            document.documentElement.style.filter = `grayscale(${slider.value}%)`;
+        });
+    </script>
+</body></html>
