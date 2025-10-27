@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Фон и Градиенты — Теория</title>
+
+    <style>
+        /* ============= БАЗА ============= */
+        :root {
+            --c1: #ff0057;
+            --c2: #ffb800;
+            --c3: #00c6ff;
+            --c4: #7b2ff7;
+            --c5: #00ff88;
+            --bg: #f3f3f3;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            gap: 3rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            color: #333;
+        }
+
+        .section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .box {
+            width: 200px;
+            height: 130px;
+            border-radius: 0.75rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        /* ============= ЛИНЕЙНЫЕ ГРАДИЕНТЫ ============= */
+        .linear-basic {
+            background: linear-gradient(to right, var(--c1), var(--c3));
+        }
+
+        .linear-angle {
+            background: linear-gradient(135deg, var(--c2), var(--c4));
+        }
+
+        .linear-multi {
+            background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4));
+        }
+
+        .linear-striped {
+            background: repeating-linear-gradient(45deg, var(--c1), var(--c1) 10px, var(--c3) 10px, var(--c3) 20px);
+        }
+
+        /* ============= РАДИАЛЬНЫЕ ГРАДИЕНТЫ ============= */
+        .radial-basic {
+            background: radial-gradient(circle, var(--c3), var(--c5));
+        }
+
+        .radial-centered {
+            background: radial-gradient(circle at center, var(--c1), var(--c4), var(--c3));
+        }
+
+        .radial-offset {
+            background: radial-gradient(circle at 30% 70%, var(--c2), var(--c5));
+        }
+
+        .radial-pattern {
+            background: repeating-radial-gradient(circle, var(--c1), var(--c1) 10px, var(--c2) 10px, var(--c2) 20px);
+        }
+
+        /* ============= КОНИЧЕСКИЕ ГРАДИЕНТЫ ============= */
+        .conic-basic {
+            background: conic-gradient(var(--c1), var(--c2), var(--c3), var(--c4), var(--c1));
+        }
+
+        .conic-repeating {
+            background: repeating-conic-gradient(var(--c1) 0deg 20deg, var(--c3) 20deg 40deg, var(--c5) 40deg 60deg);
+        }
+
+        .conic-animated {
+            background: conic-gradient(from 0deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c1));
+            background-size: 100% 100%;
+            animation: rotateGradient 4s linear infinite;
+        }
+
+        @keyframes rotateGradient {
+            to {
+                background: conic-gradient(from 360deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c1));
+            }
+        }
+
+        /* ============= НАЛОЖЕНИЯ ============= */
+        .overlay-image {
+            background:
+                linear-gradient(rgba(255, 0, 87, 0.5), rgba(0, 198, 255, 0.5)),
+                url("https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png");
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        .overlay-pattern {
+            background:
+                repeating-linear-gradient(45deg, var(--c1) 0 10px, transparent 10px 20px),
+                linear-gradient(to bottom, var(--c3), var(--c5));
+            background-blend-mode: multiply;
+        }
+
+        /* ============= АНИМАЦИИ ============= */
+        @keyframes moveGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animated-linear {
+            background: linear-gradient(270deg, var(--c1), var(--c2), var(--c3), var(--c4));
+            background-size: 400% 400%;
+            animation: moveGradient 6s ease infinite;
+        }
+
+        /* ============= HOVER (наведение) ============= */
+        .hover-gradient {
+            background: linear-gradient(to right, var(--c2), var(--c5));
+            transition: background 0.6s ease;
+        }
+
+        .hover-gradient:hover {
+            background: linear-gradient(to left, var(--c4), var(--c1), var(--c3));
+        }
+
+        /* ============= ДИНАМИЧЕСКИЙ (МЫШЬ) ============= */
+        .dynamic {
+            background: radial-gradient(circle at center, var(--c1), var(--c3), var(--c5));
+            transition: background 0.1s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <h2>ЛИНЕЙНЫЕ ГРАДИЕНТЫ</h2>
+        <div class="section">
+            <div class="box linear-basic"></div>
+            <div class="box linear-angle"></div>
+            <div class="box linear-multi"></div>
+            <div class="box linear-striped"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>РАДИАЛЬНЫЕ ГРАДИЕНТЫ</h2>
+        <div class="section">
+            <div class="box radial-basic"></div>
+            <div class="box radial-centered"></div>
+            <div class="box radial-offset"></div>
+            <div class="box radial-pattern"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>КОНИЧЕСКИЕ ГРАДИЕНТЫ</h2>
+        <div class="section">
+            <div class="box conic-basic"></div>
+            <div class="box conic-repeating"></div>
+            <div class="box conic-animated"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>НАЛОЖЕНИЯ И СМЕСЬ</h2>
+        <div class="section">
+            <div class="box overlay-image"></div>
+            <div class="box overlay-pattern"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>АНИМИРОВАННЫЕ ГРАДИЕНТЫ</h2>
+        <div class="section">
+            <div class="box animated-linear"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>НАВЕДЕНИЕ (HOVER)</h2>
+        <div class="section">
+            <div class="box hover-gradient"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>ДИНАМИЧЕСКИЙ ГРАДИЕНТ (МЫШЬ)</h2>
+        <div class="section">
+            <div class="box dynamic" id="dynamic"></div>
+        </div>
+    </section>
+
+    <script>
+        /* ======= Радиальный градиент, следующий за мышью ======= */
+        const dyn = document.getElementById('dynamic');
+        document.addEventListener('mousemove', e => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            dyn.style.background = `radial-gradient(circle at ${x}% ${y}%, var(--c1), var(--c3), var(--c5))`;
+        });
+    </script>
+
+</body></html>
