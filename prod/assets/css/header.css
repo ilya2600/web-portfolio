@@ -1,0 +1,106 @@
+.main-header {
+            display: flex;
+            background: var(--color-surface);
+            animation: HeaderAnim 1s; 
+        }
+
+        .main-header-icon {
+            margin: 1%;
+            background: lime;
+            width: clamp(4rem, 5vw, 5rem);
+            height: clamp(4rem, 5vw, 5rem);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            overflow: hidden;
+        }
+
+        .main-header-icon img {
+            background: red;
+            width: 200%;
+        }
+
+        .main-nav {
+            flex-grow: 1;
+            display: flex;
+            gap: 16px;
+            margin-top: 1%;
+            margin-bottom: 1%;
+            background: var(--color-surface);
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            flex: 1;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--color-text);
+        }
+
+        .main-nav a:hover {
+            color: var(--color-primary);
+        }
+
+        .main-header-h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1%;
+        }
+
+        .main-nav-dropdown {
+            display: none;
+        }
+
+        .main-nav-dropdown:hover+.main-nav {
+            display: block;
+            position: absolute;
+        }
+
+        .main-nav-box {
+            position: relative;
+            flex: 1;
+
+            display: flex;
+            justify-content: center;
+        }
+        
+        @keyframes HeaderAnim {
+            0%{
+               opacity: 0; 
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-nav {
+                display: none;
+                top: 100%;
+                /width: 100%;
+            }
+
+            .main-nav-dropdown {
+                display: block;
+                font-size: 3rem;
+                color: var(--color-text);
+                flex: 1;
+                text-align: center;
+                /background: pink;
+            }
+
+            .main-nav-dropdown:active+.main-nav {
+                display: block;
+                position: absolute;
+            }
+
+            .main-nav-box:focus-within .main-nav {
+                display: block;
+                position: absolute;
+            }
+        }

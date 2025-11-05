@@ -4,127 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/theme.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <title>Portfolio</title>
     <style>
-        html {
-            font-size: 16px;
+        .hero {
+            background: orange;
+            height: 600px;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background: var(--color-bg);
-        }
-
-        .main-header {
+        .hero-fg {
+            background: pink;
+            height: 100%;
             display: flex;
-            background: var(--color-surface);
-            animation: HeaderAnim 1s; 
         }
 
-        .main-header-icon {
-            margin: 1%;
-            background: lime;
-            width: clamp(4rem, 5vw, 5rem);
-            height: clamp(4rem, 5vw, 5rem);
+        .hero-left {
+            display: flex;
+            width: 50%;
+            flex-direction: column;
+        }
+
+        .hero-fg-text {
+            background: green;
+            width: 100%;
+            height: 50%;
+            padding: var(--space-m);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .hero-fg-h2 {
+            font-size: 3.5rem;
+        }
+
+        .hero-fg-p {
+            font-size: 1.5rem;
+        }
+
+        .hero-fg-btns {
+            background: lightblue;
+            width: 100%;
+            height: 50%;
+            display: flex;
+
+            flex-direction: row;
+        }
+
+        .hero-fg-ui {
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 100%;
-            overflow: hidden;
+            flex-direction: column;
+            background: pink;
+            gap: 0.5rem;
+            padding: var(--space-m);
         }
 
-        .main-header-icon img {
-            background: red;
-            width: 200%;
-        }
-
-        .main-nav {
-            flex-grow: 1;
-            display: flex;
-            gap: 16px;
-            margin-top: 1%;
-            margin-bottom: 1%;
-            background: var(--color-surface);
-        }
-
-        .main-nav a {
+        .hero-fg-pbtn {
+            color: black;
+            background: white;
+            padding: var(--space-s);
+            text-align: center;
             text-decoration: none;
-            flex: 1;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            width: 100%;
+        }
+
+        .hero-fg-sbtn {
+            color: black;
+            background: none;
+            border: solid black 0.25rem;
+            padding: var(--space-s);
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.25rem;
+            width: 100%;
+        }
+
+        .hero-fg-imgs {
+            background: purple;
+            width: 50%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--color-text);
-        }
-
-        .main-nav a:hover {
-            color: var(--color-primary);
-        }
-
-        .main-header-h1 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 1%;
-        }
-
-        .main-nav-dropdown {
-            display: none;
-        }
-
-        .main-nav-dropdown:hover+.main-nav {
-            display: block;
-            position: absolute;
-        }
-
-        .main-nav-box {
-            position: relative;
-            flex: 1;
-
-            display: flex;
-            justify-content: center;
+            gap: 1rem;
         }
         
-        @keyframes HeaderAnim {
-            0%{
-               opacity: 0; 
-            }
-            100%{
-                opacity: 1;
-            }
+        .hero-fg-img-1{
+            margin-top: 3rem;
+            background: lightblue;
+            width: 40%;
+            height: 80%;
         }
-
-        @media (max-width: 480px) {
-            .main-nav {
-                display: none;
-                top: 100%;
-                /width: 100%;
-            }
-
-            .main-nav-dropdown {
-                display: block;
-                font-size: 3rem;
-                color: var(--color-text);
-                flex: 1;
-                text-align: center;
-                /background: pink;
-            }
-
-            .main-nav-dropdown:active+.main-nav {
-                display: block;
-                position: absolute;
-            }
-
-            .main-nav-box:focus-within .main-nav {
-                display: block;
-                position: absolute;
-            }
+        .hero-fg-img-2{
+            margin-bottom: 3rem;
+            background: pink;
+            width: 40%;
+            height: 80%;
+        }
+        .test{
+            height: 300px;
+            margin-bottom: 5px;
+            background: blue;;
         }
     </style>
 </head>
@@ -150,8 +134,33 @@
         <section class="hero">
             <div class="hero-bg"></div>
             <div class="hero-fg">
-                
+                <div class="hero-left">
+                    <div class="hero-fg-text">
+                        <h2 class="hero-fg-h2">Lorem ipsum dolor sit.</h2>
+                        <p class="hero-fg-p">Ut ratione aliquid voluptas sequi, beatae expedita doloribus.</p>
+                    </div>
+                    <div class="hero-fg-btns">
+                        <div class="hero-fg-ui">
+                            <a class="hero-fg-pbtn" href="#">Главная</a>
+                            <a class="hero-fg-sbtn" href="#test">Дополнительная</a>
+                        </div>
+                        <div class="hero-fg-ui-img">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-fg-imgs">
+                    <div class="hero-fg-img-1">
+                        <!-- слайдшоу -->
+                    </div>
+                    <div class="hero-fg-img-2">
+                        <!-- слайдшоу -->
+                    </div>
+                </div>
             </div>
         </section>
+        <section class="test"></section>
+        <section class="test"></section>
+        <section class="test" id="test"></section>
     </main>
 </body></html>
