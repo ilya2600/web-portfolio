@@ -1,0 +1,40 @@
+.slide-show-feed{
+    position: absolute;
+    width: 1000px;
+    height: 100%;
+    animation: SlideShowFeed 3s infinite;
+}
+
+.slide-show-feed img{
+    height: 100%;
+}
+
+@keyframes SlideShowFeed {
+    0%{
+        transform: translateX(0)
+    }
+    20%{
+        transform: translateX(0)
+    }
+    25%{
+        transform: translateX(-300px)
+    }
+    45%{
+        transform: translateX(-300px)
+    }
+    50%{
+        transform: translateX(-600px)
+    }
+    70%{
+        transform: translateX(-600px)
+    }
+    75%{
+        transform: translateX(-900px)
+    }
+    95%{
+        transform: translateX(-900px)
+    }
+    100% {
+        transform: translateX(-1200px)
+    }
+}
