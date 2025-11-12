@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,128 +9,67 @@
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/slide-show-fade.css">
     <link rel="stylesheet" href="assets/css/slide-show-feed.css">
+    <link rel="stylesheet" href="assets/css/hero.css">
     <title>Portfolio</title>
     <style>
-        .hero {
-            /background: orange;
-            height: 600px;
-        }
-        
-        .hero-bg {
-            width: 100%;
-            height: 100%;
-            background: 10% 10% / 10% 10% repeating-linear-gradient(90deg,lightblue,teal,lightblue);
-            position: absolute;
-            z-index: -1;
-        }
-
-        .hero-fg {
-            height: 100%;
-            display: flex;
-        }
-
-        .hero-left {
-            display: flex;
-            width: 50%;
-            flex-direction: column;
-        }
-
-        .hero-fg-text {
-            width: 100%;
-            height: 50%;
-            padding: var(--space-m);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        .hero-fg-h2 {
-            font-size: 3.5rem;
-        }
-
-        .hero-fg-p {
-            font-size: 1.5rem;
-        }
-
-        .hero-fg-btns {
-            width: 100%;
-            height: 50%;
-            display: flex;
-
-            flex-direction: row;
-        }
-
-        .hero-fg-ui {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 0.5rem;
-            padding: var(--space-m);
-        }
-
-        .hero-fg-pbtn {
-            color: black;
-            background: white;
-            padding: var(--space-s);
-            text-align: center;
-            text-decoration: none;
-            font-size: 1.25rem;
-            width: 100%;
-        }
-
-        .hero-fg-sbtn {
-            color: black;
-            background: none;
-            border: solid black 0.25rem;
-            padding: var(--space-s);
-            text-align: center;
-            text-decoration: none;
-            font-size: 1.25rem;
-            width: 100%;
-        }
-
-        .hero-fg-imgs {
-            width: 50%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .hero-fg-img-1{
-            margin-top: 3rem;
-            background: lightblue;
-            width: 40%;
-            height: 80%;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-fg-img-2{
-            margin-bottom: 3rem;
+        .skills {
             background: pink;
-            width: 40%;
-            height: 80%;
-            position: relative;
-            overflow: hidden;
+            height: 400px;
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
         }
-        .test{
+
+        .skills-col {
+            display: flex;
+            flex-direction: column;
+
+            background: lightblue;
+            border: black 4px solid;
+        }
+
+        .skills-img {
+            background: orange;
+            height: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .skills-img img {
+            background: red;
+            border-radius: 100%;
+            height: 100%;
+        }
+
+        .skills-text {
+            background: magenta;
+            flex: 1;
+        }
+        .best{
+            background: orange;
+            display: flex;
+            justify-content: center;
+        }
+        .best-col{
+            background: red;
+            border: black 2px solid;
+            border-radius: 20%;
             height: 300px;
-            margin-bottom: 5px;
-            background: blue;;
+            width: 300px;
         }
-        
 
     </style>
 </head>
 
 <body>
+    <!-- ШАПКА -->
     <header class="main-header">
         <div class="main-header-icon">
             <img src="assets/imgs/test-icon.png" alt="">
         </div>
 
+        <!-- НАВИГАЦИЯ -->
         <nav class="main-nav-box">
             <a href="#" class="main-nav-dropdown">=</a>
             <nav class="main-nav">
@@ -141,10 +81,14 @@
 
         <h1 class="main-header-h1">WEBSITE</h1>
     </header>
+
+    <!-- ОСНОВНАЯ -->
     <main>
+
+        <!-- БАННЕР -->
         <section class="hero">
             <div class="hero-bg">
-                
+
             </div>
             <div class="hero-fg">
                 <div class="hero-left">
@@ -180,8 +124,76 @@
                 </div>
             </div>
         </section>
-        <section class="test"></section>
-        <section class="test"></section>
-        <section class="test" id="test"></section>
+
+        <section class="skills">
+            <div class="skills-col">
+                <!--<div class="skills-card">-->
+                <div class="skills-img">
+                    <img src="assets/imgs/htmlcss-icon.png" alt="">
+                </div>
+                <div class="skills-text">
+                    <h3 class="skills-h3">Lorem ipsum dolor.</h3>
+                    <p class="skills-p">Amet, consectetur adipisicing elit. Enim quo laudantium odit est possimus, aliquam.</p>
+                </div>
+                <!--</div>-->
+            </div>
+            <div class="skills-col">
+                <!--<div class="skills-card">-->
+                <div class="skills-img">
+                    <img src="assets/imgs/js-icon.png" alt="">
+                </div>
+                <div class="skills-text">
+                    <h3 class="skills-h3">Lorem ipsum dolor.</h3>
+                    <p class="skills-p">Amet, consectetur adipisicing elit. Enim quo laudantium odit est possimus, aliquam.</p>
+                </div>
+
+
+                <!--</div>-->
+            </div>
+            <div class="skills-col">
+                <!--<div class="skills-card">-->
+                <div class="skills-img">
+                    <img src="assets/imgs/python-icon.png" alt="">
+                </div>
+                <div class="skills-text">
+                    <h3 class="skills-h3">Lorem ipsum dolor.</h3>
+                    <p class="skills-p">Amet, consectetur adipisicing elit. Enim quo laudantium odit est possimus, aliquam.</p>
+                </div>
+
+
+                <!--</div>-->
+            </div>
+        </section>
+
+        <section class="best">
+            <a href="#">
+                <div class="best-col">
+                    <p class="best-col-text"></p>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="best-col">
+                    <p class="best-col-text"></p>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="best-mid">
+                    <p class="best-col-text"></p>
+                </div>
+            </a>
+        </section>
+
+
+        <section class="code">
+
+        </section>
+
+        <section class="design">
+
+        </section>
     </main>
-</body></html>
+</body>
+
+</html>

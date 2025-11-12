@@ -1,0 +1,104 @@
+.hero {
+            /background: orange;
+            height: 600px;
+        }
+        
+        .hero-bg {
+            width: 100%;
+            height: 100%;
+            background: 10% 10% / 10% 10% repeating-linear-gradient(90deg,lightblue,teal,lightblue);
+            position: absolute;
+            z-index: -1;
+        }
+
+        .hero-fg {
+            height: 100%;
+            display: flex;
+        }
+
+        .hero-left {
+            display: flex;
+            width: 50%;
+            flex-direction: column;
+        }
+
+        .hero-fg-text {
+            width: 100%;
+            height: 50%;
+            padding: var(--space-m);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .hero-fg-h2 {
+            font-size: 3.5rem;
+        }
+
+        .hero-fg-p {
+            font-size: 1.5rem;
+        }
+
+        .hero-fg-btns {
+            width: 100%;
+            height: 50%;
+            display: flex;
+
+            flex-direction: row;
+        }
+
+        .hero-fg-ui {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: var(--space-m);
+        }
+
+        .hero-fg-pbtn {
+            color: black;
+            background: white;
+            padding: var(--space-s);
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.25rem;
+            width: 100%;
+        }
+
+        .hero-fg-sbtn {
+            color: black;
+            background: none;
+            border: solid black 0.25rem;
+            padding: var(--space-s);
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.25rem;
+            width: 100%;
+        }
+
+        .hero-fg-imgs {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .hero-fg-img-1{
+            margin-top: 3rem;
+            background: lightblue;
+            width: 40%;
+            height: 80%;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-fg-img-2{
+            margin-bottom: 3rem;
+            background: pink;
+            width: 40%;
+            height: 80%;
+            position: relative;
+            overflow: hidden;
+        }
