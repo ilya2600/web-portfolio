@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aim Click Game</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<header>
+  <h1>Aim Click</h1>
+  <button id="leaderboardBtn">Leaderboard</button>
+</header>
+
+<div id="gameContainer">
+  <div id="playArea">
+    <div id="circle"></div>
+    <div id="startOverlay">Click to Start</div>
+  </div>
+</div>
+
+<div id="scoreDisplay">Score: 0</div>
+
+<!-- Game Over Modal -->
+<div class="modal hidden" id="gameOverModal">
+  <div class="modal-content">
+    <h2>Game Over</h2>
+    <p id="finalScore"></p>
+    <input type="text" id="playerName" placeholder="Your name" />
+    <button id="saveScore">Save Score</button>
+    <button id="tryAgain">Try Again</button>
+  </div>
+</div>
+
+<!-- Leaderboard Modal -->
+<div class="modal hidden" id="leaderboardModal">
+  <div class="modal-content">
+    <h2>Leaderboard</h2>
+    <ul id="leaderboardList"></ul>
+    <button id="closeLeaderboard">Close</button>
+  </div>
+</div>
+
+<script src="/static/game.js"></script>
+</body>
+</html>
